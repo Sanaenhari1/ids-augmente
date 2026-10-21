@@ -1,0 +1,15 @@
+{
+  "model": "FT-Transformer",
+  "macro_f1": 0.42202425456352766,
+  "accuracy": 0.6647840450857504,
+  "binary": {
+    "detection_rate": 0.9982352422130063,
+    "false_positive_rate": 0.4205675675675676,
+    "precision": 0.7441172117803759,
+    "tp": 45252,
+    "fn": 80,
+    "fp": 15561,
+    "tn": 21439
+  },
+  "train_seconds": 8814.274503231049
+}
