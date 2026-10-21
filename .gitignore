@@ -1,0 +1,6 @@
+.venv/
+data/
+models/*.pt
+models/*.joblib
+logs/
+__pycache__/
