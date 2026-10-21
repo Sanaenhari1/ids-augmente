@@ -1,0 +1,15 @@
+{
+  "model": "XGBoost",
+  "macro_f1": 0.5137930274338771,
+  "accuracy": 0.6885779526793956,
+  "binary": {
+    "detection_rate": 0.9938895261625342,
+    "false_positive_rate": 0.3804054054054054,
+    "precision": 0.7619651615085405,
+    "tp": 45055,
+    "fn": 277,
+    "fp": 14075,
+    "tn": 22925
+  },
+  "train_seconds": 8.73596715927124
+}
