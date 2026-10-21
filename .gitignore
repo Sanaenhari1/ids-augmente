@@ -4,3 +4,4 @@ models/*.pt
 models/*.joblib
 logs/
 __pycache__/
+*.pyc
