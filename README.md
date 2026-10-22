@@ -43,3 +43,9 @@ Détection : 0,04 ms par flux sur CPU (6 cœurs, VM).
 uv venv --python 3.12 .venv && source .venv/bin/activate
 uv pip install torch --index-url https://download.pytorch.org/whl/cpu && uv pip install -r requirements.txt
 python src/train.py && python src/run_pipeline.py && python src/evaluate.py && streamlit run src/app.py
+
+## Données
+Le dataset n'est pas inclus. Télécharge `UNSW_NB15_training-set.csv` et `UNSW_NB15_testing-set.csv`
+(UNSW Canberra / Kaggle, voir leurs conditions d'utilisation) et place-les dans `data/raw/`.
+Les modèles entraînés ne sont pas versionnés : `python src/train.py` les régénère dans `models/`.
+Testé avec Python 3.12 et Ollama (modèle `llama3.2:3b`).
