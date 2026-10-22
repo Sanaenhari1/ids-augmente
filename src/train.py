@@ -31,7 +31,7 @@ arch = {"d": a.d, "heads": 4, "layers": a.layers, "drop": 0.1}
 json.dump({"arch": arch}, open("models/model_cfg.json", "w"))
 model = FTTransformer(D["train"][0].shape[1], meta["cards"], len(classes), **arch).to(dev)
 
-w = compute_class_weight("balanced", classes=np.arange(len(classes)), y=D["train"][2])
+w = compute_class_weight("balanced", classes=np.arange(len(classes)), y=D["train"][2]) ** 0.5   # poids adoucis
 loss_fn = torch.nn.CrossEntropyLoss(weight=torch.tensor(w, dtype=torch.float32).to(dev))
 opt = torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-4)
 

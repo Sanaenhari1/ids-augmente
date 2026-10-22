@@ -22,5 +22,7 @@ Agent vs LLM seul : exactitude X % vs X %, fausses alarmes écartées X %.
 - Petit échantillon d'alertes pour l'agent (latence LLM sur CPU). Pas de validation sur un 2e dataset.
 
 ## Lancer
-uv venv --python 3.12 .venv && source .venv/bin/activate && uv pip install -r requirements.txt
-python src/train.py && python src/run_pipeline.py && streamlit run src/app.py
+python3 -m venv .venv && source .venv/bin/activate
+pip install torch --index-url https://download.pytorch.org/whl/cpu
+pip install -r requirements.txt
+python src/train.py && python src/run_pipeline.py && python src/evaluate.py && streamlit run src/app.py

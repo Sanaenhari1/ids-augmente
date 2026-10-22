@@ -29,7 +29,7 @@ def explain(alert, model=MODEL):
         r = ollama.chat(model=model,
                         messages=[{"role": "system", "content": SYSTEM},
                                   {"role": "user", "content": json.dumps(alert, ensure_ascii=False)}],
-                        format=Explanation.model_json_schema(), options={"temperature": 0})
+                        format=Explanation.model_json_schema(), options={"temperature": 0, "num_predict": 350})
         out = Explanation.model_validate_json(r.message.content).model_dump()
     except Exception as e:
         out = {"summary": f"Explication indisponible ({type(e).__name__})", "risk_level": "medium",
