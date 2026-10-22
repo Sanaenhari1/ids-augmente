@@ -10,7 +10,17 @@ Pipeline 100 % local : flux réseau -> FT-Transformer (détection) -> LLM (expli
 | XGBoost (baseline) | 0,514 | 99,39 % | 38,0 % |
 
 Détection : 0,04 ms par flux sur CPU (6 cœurs, VM).
-Agent vs LLM seul, sur X alertes : voir `python src/evaluate.py` (X % vs X %).
+## Couche agent : 16 alertes (10 vraies attaques, 6 fausses alarmes du Transformer)
+| Configuration | Exactitude |
+|---|---|
+| LLM seul (Llama 3.2 3B, sans outils) | 62,5 % (égal au taux de base : 10 alertes sur 16 sont de vraies attaques) |
+| Agent, verdict brut du LLM | 68,8 % |
+| Agent + garde-fou déterministe | 100 % |
+
+- Le verdict brut de l'agent a écarté à tort 5 attaques sur 10 ; le garde-fou (IP source en blocklist) les a toutes corrigées.
+- L'agent a écarté 6 fausses alarmes sur 6.
+- Latence moyenne sur CPU : explication 23 s, investigation 153 s (l'exigence initiale de 10 s n'est pas atteinte sans GPU).
+- Lecture prudente : blocklist et logs sont simulés à partir de la vérité terrain, et n = 16. Avec 0 attaque manquée sur 10, la borne haute à 95 % du taux d'attaques manquées est d'environ 26 %. Ces chiffres valident l'architecture, pas une performance en production.
 
 ## Choix de conception
 - Le Transformer décide, le LLM explique et investigue ; il n'est jamais l'unique décideur.
